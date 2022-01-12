@@ -24,9 +24,9 @@ This is the first advance of the ToDo list project, which has 3 parts, in this f
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/joseheco)
-- Twitter: [@twitterhandle](https://twitter.com/joseheco)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/joseherreraco)
+- GitHub: [@joseheco](https://github.com/joseheco)
+- Twitter: [@joseheco](https://twitter.com/joseheco)
+- LinkedIn: [JoseHerreraCo](https://linkedin.com/in/joseherreraco)
 
 
 ## 🤝 Contributing
