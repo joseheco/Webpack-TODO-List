@@ -11,7 +11,13 @@ const list = [
     completed: false,
     index: 1,
   },
+  {
+    description: 'Meeting at ',
+    completed: false,
+    index: 2,
+  },
 ];
+
 
 // Query selectors
 const listContainer = document.querySelector('.content');
@@ -44,7 +50,7 @@ function createList(task) {
   return listItem;
 }
 
-list.reverse().forEach((task) => createList(task));
+list.forEach((task) => createList(task));
 
 const check = document.querySelectorAll('.checkbox');
 check.forEach((value) => {
