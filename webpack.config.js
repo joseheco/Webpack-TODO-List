@@ -1,20 +1,21 @@
+// eslint-disable-next-line import/no-unresolved
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const ruleForStyle = {
   test: /\.css$/,
   use: ['style-loader', 'css-loader'],
-}
+};
 
-const rules = [ruleForStyle]
+const rules = [ruleForStyle];
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: 'src/index.html' })
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
   ],
-  module: { rules }
-}
+  module: { rules },
+};

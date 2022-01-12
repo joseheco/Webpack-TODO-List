@@ -15,10 +15,11 @@ main {
   margin-right: 5rem;
   border: 1px solid whitesmoke;
   border-radius: 5px;
-  box-shadow: 10px 10px 8px #888888;
+  box-shadow: 10px 10px 8px #888;
 }
 
-input, button {
+input,
+button {
   border: none;
   background: none;
 }
@@ -79,18 +80,16 @@ div.text {
   height: 21px;
 }
 
-.delete-btn{
+.delete-btn {
   display: flex;
   justify-content: center;
-  background-color:lightgray;
-  padding-bottom:0rem;
-  padding-top:0rem;
+  background-color: lightgray;
   margin-top: 1rem;
 }
 
 button#delete {
-  width:400px;
-  height:46px;
+  width: 400px;
+  height: 46px;
 }
 
 .mark {

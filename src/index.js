@@ -1,4 +1,4 @@
-import './style.css'
+import './style.css';
 
 const list = [
   {
@@ -18,7 +18,6 @@ const listContainer = document.querySelector('.content');
 
 // Functions
 function createList(task) {
-  
   const listItem = document.createElement('div');
   listItem.className = 'list';
 
@@ -54,5 +53,3 @@ check.forEach((value) => {
     value.nextElementSibling.classList.toggle('mark');
   });
 });
-
-//window.onload = createList;
