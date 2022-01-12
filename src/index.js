@@ -18,7 +18,6 @@ const list = [
   },
 ];
 
-
 // Query selectors
 const listContainer = document.querySelector('.content');
 
