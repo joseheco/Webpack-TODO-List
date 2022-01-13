@@ -1,27 +1,30 @@
+// eslint-disable-next-line import/no-cycle
+import addCheckListener from './status.js';
+// eslint-disable-next-line import/no-cycle
+import formTask from './newTasks.js';
 import './style.css';
 
-const list = [
-  {
-    description: 'Finish javascript project',
+export function newsTask(description, index) {
+  return {
+    description,
     completed: false,
-    index: 0,
-  },
-  {
-    description: 'Go to the supermarket',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Meeting at ',
-    completed: false,
-    index: 2,
-  },
-];
+    index,
+  };
+}
 
-// Query selectors
+let list = [];
+
+// function to dont use let for the list.
+export function updateList(ls) {
+  list = ls;
+}
+
+export function getList() {
+  return list;
+}
+
 const listContainer = document.querySelector('.content');
 
-// Functions
 function createList(task) {
   const listItem = document.createElement('div');
   listItem.className = 'list';
@@ -35,9 +38,11 @@ function createList(task) {
   box.className = 'checkbox';
   eachTasks.appendChild(box);
 
-  const newTask = document.createElement('div');
+  const newTask = document.createElement('input');
   newTask.className = 'text';
-  newTask.textContent = task.description;
+  newTask.type = 'text';
+  newTask.value = task.description;
+  newTask.setAttribute('readonly', 'readonly');
   eachTasks.appendChild(newTask);
 
   const btn = document.createElement('button');
@@ -51,10 +56,36 @@ function createList(task) {
 
 list.forEach((task) => createList(task));
 
-const check = document.querySelectorAll('.checkbox');
-check.forEach((value) => {
-  value.addEventListener('click', () => {
-    value.classList.toggle('check');
-    value.nextElementSibling.classList.toggle('mark');
+// render each task to follow the index.
+export function renderTasks(taks) {
+  listContainer.innerHTML = '';
+  taks.forEach((t, i) => {
+    t.index = i;
+    const taskNode = createList(t);
+    addCheckListener(taskNode, i);
   });
-});
+}
+
+// delete all task checked
+function deleteTask() {
+  list = list.filter((t) => !t.completed);
+  localStorage.setItem('lists', JSON.stringify(list));
+  renderTasks(list);
+}
+
+const btnDelete = document.getElementById('delete');
+btnDelete.addEventListener('click', deleteTask);
+
+
+// save all info in localStorage
+window.onbeforeunload = function () {
+  localStorage.setItem('lists', JSON.stringify(list));
+};
+
+window.onload = function () {
+  const tasks = localStorage.getItem('lists');
+  list = JSON.parse(tasks) || [];
+  renderTasks(list);
+};
+
+formTask();
