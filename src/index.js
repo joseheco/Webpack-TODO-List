@@ -63,6 +63,7 @@ export function renderTasks(taks) {
     t.index = i;
     const taskNode = createList(t);
     addCheckListener(taskNode, i);
+    deleteOne(taskNode);
   });
 }
 
@@ -71,6 +72,19 @@ function deleteTask() {
   list = list.filter((t) => !t.completed);
   localStorage.setItem('lists', JSON.stringify(list));
   renderTasks(list);
+}
+
+const deleteOne = (taskNode) => {
+  const deleteOnee = taskNode.querySelector('.btn-right');
+deleteOnee.addEventListener('click', () => {
+//list = list.filter((t) => t.index);
+list.filter(function(element){
+  return !element.index === 3;
+})
+
+renderTasks(list);
+localStorage.setItem('lists', JSON.stringify(list));
+})
 }
 
 const btnDelete = document.getElementById('delete');

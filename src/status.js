@@ -21,13 +21,6 @@ const addCheckListener = (taskNode, index) => {
     getList()[index].description = inputText.value;
     localStorage.setItem('lists', JSON.stringify(getList()));
   });
-  const deleteOne = taskNode.querySelector('.btn-right');
-  const task = document.querySelector('.list');
-  const content = document.querySelector('.content')
-  deleteOne.addEventListener('click', () => {
-  getList()[index] = content.removeChild(task);
-  localStorage.setItem('lists', JSON.stringify(getList()));
-  })
 };
 
 export default addCheckListener;
