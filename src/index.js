@@ -51,6 +51,13 @@ export function createList(task) {
 
 list.forEach((task) => createList(task));
 
+function setTime() {
+  const trash = 
+  setInterval(() => {
+
+  })
+}
+
 // delete each task
 export const deleteOne = (taskNode, i) => {
   const deletOne = taskNode.querySelector('.btn-right');
