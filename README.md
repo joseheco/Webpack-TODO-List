@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://joseheco.github.io/Webpack-TODO-List/build)
+[Live Demo Link](https://joseheco.github.io/Webpack-TODO-List/dist)
 
 
 ## Getting Started
