@@ -1,28 +1,26 @@
+// eslint-disable-next-line import/no-cycle
+import formTask from './newTasks.js';
+// eslint-disable-next-line import/no-cycle
+import renderTasks from './render.js';
 import './style.css';
 
-const list = [
-  {
-    description: 'Finish javascript project',
+export function newsTask(description, index) {
+  return {
+    description,
     completed: false,
-    index: 0,
-  },
-  {
-    description: 'Go to the supermarket',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Meeting at ',
-    completed: false,
-    index: 2,
-  },
-];
+    index,
+  };
+}
 
-// Query selectors
-const listContainer = document.querySelector('.content');
+let list = [];
 
-// Functions
-function createList(task) {
+export function getList() {
+  return list;
+}
+
+export const listContainer = document.querySelector('.content');
+
+export function createList(task) {
   const listItem = document.createElement('div');
   listItem.className = 'list';
 
@@ -35,9 +33,11 @@ function createList(task) {
   box.className = 'checkbox';
   eachTasks.appendChild(box);
 
-  const newTask = document.createElement('div');
+  const newTask = document.createElement('input');
   newTask.className = 'text';
-  newTask.textContent = task.description;
+  newTask.type = 'text';
+  newTask.value = task.description;
+  newTask.setAttribute('readonly', 'readonly');
   eachTasks.appendChild(newTask);
 
   const btn = document.createElement('button');
@@ -51,10 +51,35 @@ function createList(task) {
 
 list.forEach((task) => createList(task));
 
-const check = document.querySelectorAll('.checkbox');
-check.forEach((value) => {
-  value.addEventListener('click', () => {
-    value.classList.toggle('check');
-    value.nextElementSibling.classList.toggle('mark');
+// delete each task
+export const deleteOne = (taskNode, i) => {
+  const deletOne = taskNode.querySelector('.btn-right');
+  deletOne.addEventListener('click', () => {
+    list.splice(i, 1);
+    renderTasks(list);
+    localStorage.setItem('lists', JSON.stringify(list));
   });
-});
+};
+
+// delete all task checked
+const deleteTask = () => {
+  list = list.filter((t) => !t.completed);
+  localStorage.setItem('lists', JSON.stringify(list));
+  renderTasks(list);
+};
+
+const btnDelete = document.getElementById('delete');
+btnDelete.addEventListener('click', deleteTask);
+
+// save all info in localStorage
+window.onbeforeunload = function () {
+  localStorage.setItem('lists', JSON.stringify(list));
+};
+
+window.onload = function () {
+  const tasks = localStorage.getItem('lists');
+  list = JSON.parse(tasks) || [];
+  renderTasks(list);
+};
+
+formTask();
