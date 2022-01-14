@@ -51,14 +51,10 @@ export function createList(task) {
 
 list.forEach((task) => createList(task));
 
-// delete each task
+// delete each task delete
 export const deleteOne = (taskNode, i) => {
   const deletOne = taskNode.querySelector('.btn-right');
   deletOne.addEventListener('click', () => {
-    setInterval((function timer() { 
-      console.log('hola');
-      return timer;
-    })(), 5000);
     list.splice(i, 1);
     renderTasks(list);
     localStorage.setItem('lists', JSON.stringify(list));
