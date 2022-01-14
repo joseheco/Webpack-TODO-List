@@ -19,6 +19,16 @@
 
 This is the first advance of the ToDo list project, which has 3 parts, in this first section we are creating the index.js and using webpack
 
+## Setup
+
+In case you want to have the project locally, perform the following steps
+
+- git clone of the project
+- npm installed ( dependencies (npm install dev))
+- npm run dev
+
+The page will now automatically open in your browser.
+
 
 ## Authors
 
