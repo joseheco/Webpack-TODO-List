@@ -4,15 +4,13 @@
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/nmw6wWK/todo-list.png" alt="todo-list" border="0"></a>
 
+
+
 ## Built With
 
 - HTML
 - CSS
 - JavaScript
-
-## Live Demo
-
-[Live Demo Link](https://joseheco.github.io/Webpack-TODO-List/dist)
 
 
 ## Getting Started
