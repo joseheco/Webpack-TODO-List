@@ -51,23 +51,22 @@ export function createList(task) {
 
 list.forEach((task) => createList(task));
 
+// delete each task
+export const deleteOne = (taskNode, i) => {
+  const deletOne = taskNode.querySelector('.btn-right');
+  deletOne.addEventListener('click', () => {
+    list.splice(i, 1);
+    renderTasks(list);
+    localStorage.setItem('lists', JSON.stringify(list));
+  });
+};
+
 // delete all task checked
 const deleteTask = () => {
   list = list.filter((t) => !t.completed);
   localStorage.setItem('lists', JSON.stringify(list));
   renderTasks(list);
 };
-
-const deleteOne = (taskNode) => {
-  const deleteOnee = taskNode.querySelector('.btn-right');
-deleteOnee.addEventListener('click', () => {
-list.splice
-})
-
-renderTasks(list);
-localStorage.setItem('lists', JSON.stringify(list));
-})
-}
 
 const btnDelete = document.getElementById('delete');
 btnDelete.addEventListener('click', deleteTask);
