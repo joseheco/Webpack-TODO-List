@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { getList } from './index.js';
 
-
 // eventlistener to check the checkbox and change the task.
 const addCheckListener = (taskNode, index) => {
   const check = taskNode.querySelector('.checkbox');
@@ -24,5 +23,3 @@ const addCheckListener = (taskNode, index) => {
 };
 
 export default addCheckListener;
-
-// list.filter((t) => !t.completed)

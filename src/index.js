@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import addCheckListener from './status.js';
-// eslint-disable-next-line import/no-cycle
 import formTask from './newTasks.js';
+// eslint-disable-next-line import/no-cycle
+import renderTasks from './render.js';
 import './style.css';
 
 export function newsTask(description, index) {
@@ -14,18 +14,13 @@ export function newsTask(description, index) {
 
 let list = [];
 
-// function to dont use let for the list.
-export function updateList(ls) {
-  list = ls;
-}
-
 export function getList() {
   return list;
 }
 
-const listContainer = document.querySelector('.content');
+export const listContainer = document.querySelector('.content');
 
-function createList(task) {
+export function createList(task) {
   const listItem = document.createElement('div');
   listItem.className = 'list';
 
@@ -56,30 +51,17 @@ function createList(task) {
 
 list.forEach((task) => createList(task));
 
-// render each task to follow the index.
-export function renderTasks(taks) {
-  listContainer.innerHTML = '';
-  taks.forEach((t, i) => {
-    t.index = i;
-    const taskNode = createList(t);
-    addCheckListener(taskNode, i);
-    deleteOne(taskNode);
-  });
-}
-
 // delete all task checked
-function deleteTask() {
+const deleteTask = () => {
   list = list.filter((t) => !t.completed);
   localStorage.setItem('lists', JSON.stringify(list));
   renderTasks(list);
-}
+};
 
 const deleteOne = (taskNode) => {
   const deleteOnee = taskNode.querySelector('.btn-right');
 deleteOnee.addEventListener('click', () => {
-//list = list.filter((t) => t.index);
-list.filter(function(element){
-  return !element.index === 3;
+list.splice
 })
 
 renderTasks(list);
@@ -89,7 +71,6 @@ localStorage.setItem('lists', JSON.stringify(list));
 
 const btnDelete = document.getElementById('delete');
 btnDelete.addEventListener('click', deleteTask);
-
 
 // save all info in localStorage
 window.onbeforeunload = function () {

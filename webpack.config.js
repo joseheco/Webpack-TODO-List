@@ -18,4 +18,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
   ],
   module: { rules },
+  devServer: {
+    hot: true,
+    open: true,
+    watchFiles: ['src/**/*'],
+  },
 };
