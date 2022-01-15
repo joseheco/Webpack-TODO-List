@@ -1,8 +1,7 @@
-// eslint-disable-next-line import/no-cycle
-import formTask from './newTasks.js';
+import { createList } from './createTask.js';
+import './style.css';
 // eslint-disable-next-line import/no-cycle
 import renderTasks from './render.js';
-import './style.css';
 
 export function newsTask(description, index) {
   return {
@@ -18,37 +17,6 @@ export function getList() {
   return list;
 }
 
-export const listContainer = document.querySelector('.content');
-
-export function createList(task) {
-  const listItem = document.createElement('div');
-  listItem.className = 'list';
-
-  const eachTasks = document.createElement('div');
-  eachTasks.className = 'eachtask';
-  listItem.appendChild(eachTasks);
-
-  const box = document.createElement('input');
-  box.type = 'checkbox';
-  box.className = 'checkbox';
-  eachTasks.appendChild(box);
-
-  const newTask = document.createElement('input');
-  newTask.className = 'text';
-  newTask.type = 'text';
-  newTask.value = task.description;
-  newTask.setAttribute('readonly', 'readonly');
-  eachTasks.appendChild(newTask);
-
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'btn-right';
-  listItem.appendChild(btn);
-
-  listContainer.appendChild(listItem);
-  return listItem;
-}
-
 list.forEach((task) => createList(task));
 
 // delete each task
@@ -56,8 +24,28 @@ export const deleteOne = (taskNode, i) => {
   const deletOne = taskNode.querySelector('.btn-right');
   deletOne.addEventListener('click', () => {
     list.splice(i, 1);
-    renderTasks(list);
     localStorage.setItem('lists', JSON.stringify(list));
+    renderTasks(list);
+  });
+};
+
+export const addCheckListener = (taskNode, index) => {
+  const check = taskNode.querySelector('.checkbox');
+  check.checked = getList()[index].completed;
+  if (check.checked) {
+    check.nextElementSibling.classList.add('mark');
+  }
+  check.addEventListener('click', () => {
+    check.classList.toggle('check');
+    check.nextElementSibling.classList.toggle('mark');
+    getList()[index].completed = !getList()[index].completed;
+    localStorage.setItem('lists', JSON.stringify(getList()));
+  });
+  const inputText = taskNode.querySelector('.text');
+  inputText.removeAttribute('readonly');
+  inputText.addEventListener('keydown', () => {
+    getList()[index].description = inputText.value;
+    localStorage.setItem('lists', JSON.stringify(getList()));
   });
 };
 
@@ -65,11 +53,29 @@ export const deleteOne = (taskNode, i) => {
 const deleteTask = () => {
   list = list.filter((t) => !t.completed);
   localStorage.setItem('lists', JSON.stringify(list));
-  renderTasks(list);
 };
 
+function randomfunct() {
+  deleteTask();
+  renderTasks(list);
+}
+
 const btnDelete = document.getElementById('delete');
-btnDelete.addEventListener('click', deleteTask);
+btnDelete.addEventListener('click', randomfunct);
+
+// create each task
+const formTask = () => {
+  const form = document.getElementById('task-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const description = document.getElementById('task-input').value;
+    const index = getList().length + 1;
+    const t = newsTask(description, index);
+    getList().push(t);
+    localStorage.setItem('lists', JSON.stringify(getList()));
+    renderTasks(getList());
+  });
+};
 
 // save all info in localStorage
 window.onbeforeunload = function () {
