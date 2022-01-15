@@ -12,20 +12,17 @@
 - CSS
 - JavaScript
 
-## Live Demo
-
-[Live Demo Link](https://joseheco.github.io/Webpack-TODO-List/dist)
 
 
 ## Getting Started
 
-This is the first advance of the ToDo list project, which has 3 parts, in this first section we are creating the index.js and using webpack
+This is the first advance of the ToDo list project, which has 3 parts, in this last part we are putting together all the functions in different modules and their applications all tog and using webpack.
 
 ## Setup
 
-In case you want to have the project locally, perform the following steps
+In case you want to have the project locally, perform the following steps:
 
-- git clone of the project
+- git clone of the project [Project](git@github.com:joseheco/Webpack-TODO-List.git)
 - npm installed ( dependencies (npm install dev))
 - npm run dev
 

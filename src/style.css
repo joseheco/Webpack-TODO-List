@@ -74,10 +74,12 @@ div.text {
 }
 
 .btn-right {
-  background-image: url('./img/icons8-menu-vertical-24.png');
+  background-image: url('./img/icons8-trash-24.png');
   background-repeat: no-repeat;
+  background-position: center;
   width: 20px;
-  height: 21px;
+  height: 20px;
+
 }
 
 .delete-btn {
